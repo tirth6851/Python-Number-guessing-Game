@@ -4,15 +4,16 @@ import time
 
 
 def main():
+    """Run the game and ask the player if they want to play again."""
     start_game()
-    if ask_to_play():
+    while ask_to_play():
         check_winner()
-    else:
-        print("Maybe next time!")
+    print("Maybe next time!")
 
 
 
 def start_game():
+    """Display the introduction text for the game."""
     print("Loading...")
     time.sleep(2)
     print("Welcome to the Number Guessing Game!")
@@ -25,15 +26,18 @@ def start_game():
 
 
 def ask_to_play():
+    """Prompt the player to start or replay the game."""
     start_game_choice = input("Ready to play? (yes/no): ").lower()
     return start_game_choice == "yes"
 
 
-def C_guess():
+def computer_guess():
+    """Return a random integer between 1 and 10."""
     return random.randint(1, 10)
 
 
-def P_guess():
+def player_guess():
+    """Prompt the player to guess a number and validate the input."""
     while True:
         try:
             guess = int(input("Guess a number between 1 and 10: "))
@@ -47,9 +51,10 @@ def P_guess():
 
 
 def check_winner():
-    secret_number = C_guess()
+    """Run the guessing logic and report the outcome."""
+    secret_number = computer_guess()
     for attempt in range(1, 4):
-        guess = P_guess()
+        guess = player_guess()
         if guess == secret_number:
             print("You win!")
             print("You guessed the correct number!")
@@ -63,7 +68,7 @@ def check_winner():
                     hint.append(secret_number + 1)
                 random.shuffle(hint)  
                 print(f"Hint! The number is one of these: {hint}")
-                final_guess = P_guess()
+                final_guess = player_guess()
                 if final_guess == secret_number:
                     print("You win! You guessed the correct number!")
                 else:
