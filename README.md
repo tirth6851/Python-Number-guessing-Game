@@ -23,4 +23,5 @@ The computer picks a random number between **1 and 10**, and you have **only 3 t
 
 ## Run the Game
 ```bash
-python main.py
+python Number_Guessing.py
+```
